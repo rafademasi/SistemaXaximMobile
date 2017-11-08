@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.andre.testelogin.R;
+import com.example.android.camera2basic.CameraActivity;
 
 
 public class MenuFuncActivity extends AppCompatActivity {
@@ -26,9 +27,9 @@ public class MenuFuncActivity extends AppCompatActivity {
         setUser();
     }
 
-    public void onClick(View view){
-        Intent intent = new Intent(this, GerenciarActivity.class);
-        intent.putExtra(Intent.EXTRA_TEXT, getIntent().getStringExtra(Intent.EXTRA_TEXT).toString());
+    public void onEntrega(View view){
+        Intent intent = new Intent(this, CameraActivity.class);
+
         startActivity(intent);
     }
 

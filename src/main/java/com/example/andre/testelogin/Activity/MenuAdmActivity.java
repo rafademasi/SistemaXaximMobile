@@ -22,7 +22,7 @@ public class MenuAdmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_adm);
 
         textView1 = (TextView) findViewById(R.id.textView1);
-        button1 = (Button) findViewById(R.id.button1) ;
+        button1 = (Button) findViewById(R.id.button) ;
 
         setUser();
     }

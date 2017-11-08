@@ -60,9 +60,10 @@
             android:id="@+id/button"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:text="Realizar Entrega"
+            android:layout_margin="2dp"
             android:background="#939393"
-            android:layout_margin="2dp"/>
+            android:onClick="onEntrega"
+            android:text="Realizar Entrega" />
 
     </LinearLayout>
 
