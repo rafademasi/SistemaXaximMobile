@@ -3,10 +3,13 @@ package com.example.andre.testelogin.Model;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.andre.testelogin.Activity.MenuAdmActivity;
 import com.example.andre.testelogin.Activity.MenuFuncActivity;
+import com.example.andre.testelogin.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,26 +23,26 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
-public class SelectUser extends AsyncTask <Void, Void, String> {
+/**
+ * Created by andre on 07/11/2017.
+ */
+
+public class SelectCliente extends AsyncTask <Void, Void, String> {
 
     private static final String HOST = "http://es.ft.unicamp.br/ulisses/si700/select_data.php";
-    private  Context context;
-    private String user;
-    private String senha;
+    private Context context;
+    private Spinner spinner;
 
-
-    ArrayList<Usuario> users = new ArrayList<>();
+    ArrayList<String> clientes = new ArrayList<>();
     String[] fields = new String[0];
     String[] values = new String[0];
 
-
-    public SelectUser(Context context, String user, String senha){
+    public SelectCliente(Context context, Spinner spinner){
         this.context = context;
-        this.user = user;
-        this.senha = senha;
+        this.spinner = spinner;
     }
-
     @Override
     protected String doInBackground(Void... objects) {
         HttpURLConnection httpURLConnection = null;
@@ -51,7 +54,7 @@ public class SelectUser extends AsyncTask <Void, Void, String> {
                     URLEncoder.encode("database","UTF-8")+"="+
                             URLEncoder.encode("ra158352","UTF-8")+"&"+
                             URLEncoder.encode("table","UTF-8")+"="+
-                            URLEncoder.encode("usuario","UTF-8");
+                            URLEncoder.encode("cliente","UTF-8");
 
             for(int i = 0; i < fields.length; i++) {
                 data +=  "&" +  URLEncoder.encode(fields[i] , "UTF-8") + "=" +
@@ -116,41 +119,17 @@ public class SelectUser extends AsyncTask <Void, Void, String> {
             JSONArray jsonArray = new JSONArray(result);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Usuario usuario = new Usuario(jsonObject.getInt("_id"),jsonObject.getString("user"),jsonObject.getString("senha"),jsonObject.getInt("tipoUser"));
-                users.add(usuario);
+                clientes.add(jsonObject.getString("nome"));
             }
         } catch (JSONException exception){
             exception.printStackTrace();
         }
 
-        int i = 0;
-        for (i = 0; i < users.size(); i++) {
-            Usuario usuario = users.get(i);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(context, R.layout.spinner_item, clientes);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
-            if((usuario.getUser().toString().equals(user))&&(usuario.getSenha().toString().equals(senha))){
-                if(usuario.getTipoUser()==0){
-                    Intent intent = new Intent(context, MenuAdmActivity.class);
-                    intent.putExtra(Intent.EXTRA_TEXT, user);
-                    context.startActivity(intent);
-                    break;
-                }
-                else{
-                    Intent intent = new Intent(context, MenuFuncActivity.class);
-                    intent.putExtra(Intent.EXTRA_TEXT, user);
-                    context.startActivity(intent);
-                    break;
-                }
-            }
         }
 
-        if(i == users.size()){
-            CharSequence text = "Usuário ou Senha inválidos";
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
-
-
-    }
 }

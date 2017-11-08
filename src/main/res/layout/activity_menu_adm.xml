@@ -74,13 +74,6 @@
             android:onClick="onClick"
             android:text="Gerenciar Entregas" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:text="Realizar Fechamento"
-            android:background="#939393"
-            android:layout_margin="2dp"/>
     </LinearLayout>
 
 </LinearLayout>
