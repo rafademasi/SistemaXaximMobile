@@ -1,12 +1,18 @@
 package com.example.andre.testelogin.Adapter;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.andre.testelogin.Model.Entrega;
 import com.example.andre.testelogin.R;
 
@@ -56,17 +62,34 @@ public class AdapterEntrega extends BaseAdapter {
                 view.findViewById(R.id.textView2);
         ImageView imagem = (ImageView)
                 view.findViewById(R.id.imageView);
+        TextView valor = (TextView)
+                view.findViewById(R.id.textView3);
 
-        cliente.setText(entrega.getCliente());
-        data.setText(entrega.getData().toString());
-        tipo.setText(entrega.getTipo());
-
-        if(entrega.getTipo().equals("Arranjo Floral")){
-            imagem.setImageResource(R.drawable.arranjo);
-        }
+        if(entrega.getCliente() == 0){
+            cliente.setText("John Deere");}
+        else if (entrega.getCliente() == 1){
+            cliente.setText("Unimed");}
         else{
-            imagem.setImageResource(R.drawable.vaso);
-        }
+            cliente.setText("Hipica");}
+
+        Log.v("SHOW", String.valueOf(entrega.getCliente()));
+
+        data.setText(entrega.getData().toString());
+
+        if(entrega.getTipo() == 0)
+            tipo.setText("Arranjo Floral");
+        else
+            tipo.setText("Vaso ornamental");
+
+        valor.setText(String.valueOf(entrega.getValor()));
+
+        byte[] encondeByte = Base64.decode(entrega.getImg(),Base64.DEFAULT);
+/*
+        Bitmap bitmap = BitmapFactory.decodeByteArray(encondeByte,0,encondeByte.length);
+
+        imagem.setImageBitmap(bitmap);*/
+
+        Glide.with(act).load(encondeByte).asBitmap().into(imagem);
 
         return view;
     }

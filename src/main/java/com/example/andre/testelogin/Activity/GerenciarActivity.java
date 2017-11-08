@@ -11,6 +11,7 @@ import com.example.andre.testelogin.Model.Entrega;
 /*
 import com.example.andre.testelogin.Model.SelectEntrega;
 */
+import com.example.andre.testelogin.Model.SelectEntrega;
 import com.example.andre.testelogin.R;
 
 import java.util.ArrayList;
@@ -28,13 +29,12 @@ public class GerenciarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gerenciar);
 
         listView = (ListView) findViewById(R.id.listView);
-        textView1 = (TextView) findViewById(R.id.textView1);
 
         String[] fields = new String[0];
         String[] values = new String[0];
         ListView listView = (ListView)findViewById(R.id.listView);
-      /*  SelectEntrega selectEntrega = new SelectEntrega(this, listView, fields,values);
-        selectEntrega.execute();*/
+        SelectEntrega selectEntrega = new SelectEntrega(this, listView, fields,values);
+        selectEntrega.execute();
 
     }
 
