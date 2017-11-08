@@ -5,19 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.andre.testelogin.Activity.RealizarEntregaActivity">
+    android:background="@android:color/background_light"
+    tools:context="com.example.andre.testelogin.Activity.RealizarEntregaActivity"
+    android:weightSum="1">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="78dp"
+                app:srcCompat="@mipmap/ic_launcher"
+                android:layout_weight="0.08" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Xaxim Flores"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:rotation="90" />
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="top|center_horizontal"/>
 
-    <Button
-        android:id="@+id/button3"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:theme="@style/AppTheme"
+        />
+
+    <EditText
+        android:id="@+id/editText3"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="Button" />
+        android:layout_gravity="center_horizontal"
+        android:hint="Digite a data"
+        android:inputType="date"
+        android:textAlignment="center"
+        android:theme="@style/AppTheme"
+        />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:hint="Digite o valor"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:theme="@style/AppTheme"
+        />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:entries="@array/array_arranjos"
+        android:textAlignment="center"
+        android:theme="@style/AppTheme"
+        />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:text="Realizar Entrega"
+        android:background="#939393"
+        android:layout_margin="2dp"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClick"
+        />
 </LinearLayout>
